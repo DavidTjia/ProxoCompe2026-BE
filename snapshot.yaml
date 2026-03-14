@@ -175,7 +175,7 @@ fields:
       name: id
       table: comments
       data_type: uuid
-      default_value: uuid_generate_v4()
+      default_value: null
       max_length: null
       numeric_precision: null
       numeric_scale: null
@@ -227,8 +227,8 @@ fields:
       is_generated: false
       generation_expression: null
       has_auto_increment: false
-      foreign_key_table: reports
-      foreign_key_column: id
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: comments
     field: user_id
     type: uuid
@@ -268,8 +268,8 @@ fields:
       is_generated: false
       generation_expression: null
       has_auto_increment: false
-      foreign_key_table: users
-      foreign_key_column: id
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: comments
     field: comment_text
     type: text
@@ -378,7 +378,7 @@ fields:
       name: id
       table: locations
       data_type: uuid
-      default_value: uuid_generate_v4()
+      default_value: null
       max_length: null
       numeric_precision: null
       numeric_scale: null
@@ -852,7 +852,7 @@ fields:
       interface: select-dropdown-m2o
       note: null
       options:
-        template: '{{id}}'
+        enableLink: true
       readonly: false
       required: true
       searchable: true
@@ -881,47 +881,6 @@ fields:
       foreign_key_table: users
       foreign_key_column: id
   - collection: ratings
-    field: report_id
-    type: uuid
-    meta:
-      collection: ratings
-      conditions: null
-      display: null
-      display_options: null
-      field: report_id
-      group: null
-      hidden: false
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 3
-      special:
-        - uuid
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: report_id
-      table: ratings
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: reports
-      foreign_key_column: id
-  - collection: ratings
     field: id
     type: uuid
     meta:
@@ -931,11 +890,11 @@ fields:
       display_options: null
       field: id
       group: null
-      hidden: false
-      interface: null
+      hidden: true
+      interface: input
       note: null
       options: null
-      readonly: false
+      readonly: true
       required: false
       searchable: true
       sort: 1
@@ -949,7 +908,7 @@ fields:
       name: id
       table: ratings
       data_type: uuid
-      default_value: uuid_generate_v4()
+      default_value: null
       max_length: null
       numeric_precision: null
       numeric_scale: null
@@ -957,6 +916,216 @@ fields:
       is_unique: true
       is_indexed: false
       is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: ratings
+    field: user_created
+    type: uuid
+    meta:
+      collection: ratings
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: ratings
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: ratings
+    field: date_created
+    type: timestamp
+    meta:
+      collection: ratings
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: ratings
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: ratings
+    field: user_updated
+    type: uuid
+    meta:
+      collection: ratings
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: ratings
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: ratings
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: ratings
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - date-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: ratings
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: ratings
+    field: rating_value
+    type: integer
+    meta:
+      collection: ratings
+      conditions: null
+      display: null
+      display_options: null
+      field: rating_value
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        max: 5
+        min: 1
+      readonly: false
+      required: true
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: rating_value
+      table: ratings
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
       is_generated: false
       generation_expression: null
       has_auto_increment: false
@@ -973,15 +1142,16 @@ fields:
       field: user_id
       group: null
       hidden: false
-      interface: null
+      interface: select-dropdown-m2o
       note: null
-      options: null
+      options:
+        enableLink: true
       readonly: false
-      required: false
+      required: true
       searchable: true
-      sort: 2
+      sort: 7
       special:
-        - uuid
+        - m2o
       translations: null
       validation: null
       validation_message: null
@@ -1004,39 +1174,38 @@ fields:
       foreign_key_table: users
       foreign_key_column: id
   - collection: ratings
-    field: rating_value
-    type: integer
+    field: report_id
+    type: uuid
     meta:
       collection: ratings
       conditions: null
       display: null
       display_options: null
-      field: rating_value
+      field: report_id
       group: null
       hidden: false
-      interface: null
+      interface: select-dropdown-m2o
       note: null
-      options: null
+      options:
+        enableLink: true
       readonly: false
-      required: false
+      required: true
       searchable: true
-      sort: 4
-      special: null
+      sort: 8
+      special:
+        - m2o
       translations: null
-      validation:
-        _and:
-          - rating_value:
-              _lte: '5'
+      validation: null
       validation_message: null
       width: full
     schema:
-      name: rating_value
+      name: report_id
       table: ratings
-      data_type: integer
+      data_type: uuid
       default_value: null
       max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: true
       is_unique: false
       is_indexed: false
@@ -1044,36 +1213,121 @@ fields:
       is_generated: false
       generation_expression: null
       has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: ratings
-    field: created_at
-    type: dateTime
+      foreign_key_table: reports
+      foreign_key_column: id
+  - collection: reports
+    field: id
+    type: uuid
     meta:
-      collection: ratings
+      collection: reports
       conditions: null
       display: null
       display_options: null
-      field: created_at
+      field: id
       group: null
-      hidden: false
-      interface: null
+      hidden: true
+      interface: input
       note: null
       options: null
-      readonly: false
+      readonly: true
       required: false
       searchable: true
-      sort: 5
-      special: null
+      sort: 1
+      special:
+        - uuid
       translations: null
       validation: null
       validation_message: null
       width: full
     schema:
-      name: created_at
-      table: ratings
-      data_type: timestamp without time zone
-      default_value: CURRENT_TIMESTAMP
+      name: id
+      table: reports
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: reports
+    field: user_created
+    type: uuid
+    meta:
+      collection: reports
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: reports
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: reports
+    field: date_created
+    type: timestamp
+    meta:
+      collection: reports
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: reports
+      data_type: timestamp with time zone
+      default_value: null
       max_length: null
       numeric_precision: null
       numeric_scale: null
@@ -1087,40 +1341,84 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: reports
-    field: id
+    field: user_updated
     type: uuid
     meta:
       collection: reports
       conditions: null
-      display: null
+      display: user
       display_options: null
-      field: id
+      field: user_updated
       group: null
       hidden: true
-      interface: numeric
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: reports
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: reports
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: reports
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: null
+      hidden: true
+      interface: datetime
       note: null
       options: null
       readonly: true
       required: false
       searchable: true
-      sort: 1
-      special: null
+      sort: 5
+      special:
+        - date-updated
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
-      name: id
+      name: date_updated
       table: reports
-      data_type: uuid
-      default_value: uuid_generate_v4()
+      data_type: timestamp with time zone
+      default_value: null
       max_length: null
       numeric_precision: null
       numeric_scale: null
-      is_nullable: false
-      is_unique: true
+      is_nullable: true
+      is_unique: false
       is_indexed: false
-      is_primary_key: true
+      is_primary_key: false
       is_generated: false
       generation_expression: null
       has_auto_increment: false
@@ -1139,11 +1437,13 @@ fields:
       hidden: false
       interface: input-multiline
       note: null
-      options: null
+      options:
+        softLength: 1000
+        trim: true
       readonly: false
       required: true
       searchable: true
-      sort: 2
+      sort: 6
       special: null
       translations: null
       validation: null
@@ -1179,19 +1479,11 @@ fields:
       hidden: false
       interface: input
       note: null
-      options:
-        defaultView:
-          bearing: 0
-          center:
-            lat: 0
-            lng: 0
-          pitch: 0
-          zoom: 0
-        geometryType: Point
+      options: null
       readonly: false
       required: true
       searchable: true
-      sort: 4
+      sort: 7
       special: null
       translations: null
       validation: null
@@ -1203,8 +1495,8 @@ fields:
       data_type: numeric
       default_value: null
       max_length: null
-      numeric_precision: 9
-      numeric_scale: 6
+      numeric_precision: 10
+      numeric_scale: 5
       is_nullable: true
       is_unique: false
       is_indexed: false
@@ -1231,7 +1523,7 @@ fields:
       readonly: false
       required: true
       searchable: true
-      sort: 5
+      sort: 8
       special: null
       translations: null
       validation: null
@@ -1243,8 +1535,8 @@ fields:
       data_type: numeric
       default_value: null
       max_length: null
-      numeric_precision: 9
-      numeric_scale: 6
+      numeric_precision: 10
+      numeric_scale: 5
       is_nullable: true
       is_unique: false
       is_indexed: false
@@ -1255,71 +1547,31 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: reports
-    field: created_at
-    type: dateTime
-    meta:
-      collection: reports
-      conditions: null
-      display: null
-      display_options: null
-      field: created_at
-      group: null
-      hidden: false
-      interface: datetime
-      note: null
-      options: null
-      readonly: false
-      required: true
-      searchable: true
-      sort: 10
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: created_at
-      table: reports
-      data_type: timestamp without time zone
-      default_value: CURRENT_TIMESTAMP
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: reports
-    field: user_id
+    field: photo
     type: uuid
     meta:
       collection: reports
       conditions: null
       display: null
       display_options: null
-      field: user_id
+      field: photo
       group: null
       hidden: false
-      interface: null
+      interface: file-image
       note: null
       options: null
       readonly: false
-      required: false
+      required: true
       searchable: true
-      sort: null
+      sort: 9
       special:
-        - uuid
+        - file
       translations: null
       validation: null
       validation_message: null
       width: full
     schema:
-      name: user_id
+      name: photo
       table: reports
       data_type: uuid
       default_value: null
@@ -1333,113 +1585,35 @@ fields:
       is_generated: false
       generation_expression: null
       has_auto_increment: false
-      foreign_key_table: users
+      foreign_key_table: directus_files
       foreign_key_column: id
   - collection: reports
-    field: updated_at
-    type: dateTime
-    meta:
-      collection: reports
-      conditions: null
-      display: null
-      display_options: null
-      field: updated_at
-      group: null
-      hidden: false
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: updated_at
-      table: reports
-      data_type: timestamp without time zone
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: reports
-    field: image_url
+    field: ai_summary
     type: text
     meta:
       collection: reports
       conditions: null
       display: null
       display_options: null
-      field: image_url
+      field: ai_summary
       group: null
       hidden: false
-      interface: null
+      interface: input-multiline
       note: null
-      options: null
+      options:
+        softLength: 255
+        trim: true
       readonly: false
-      required: false
+      required: true
       searchable: true
-      sort: null
+      sort: 10
       special: null
       translations: null
       validation: null
       validation_message: null
       width: full
     schema:
-      name: image_url
-      table: reports
-      data_type: text
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: reports
-    field: summary
-    type: text
-    meta:
-      collection: reports
-      conditions: null
-      display: null
-      display_options: null
-      field: summary
-      group: null
-      hidden: false
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: summary
+      name: ai_summary
       table: reports
       data_type: text
       default_value: null
@@ -1475,7 +1649,10 @@ fields:
       sort: 11
       special: null
       translations: null
-      validation: null
+      validation:
+        _and:
+          - pollution_score:
+              _lte: '10'
       validation_message: null
       width: full
     schema:
@@ -1515,10 +1692,7 @@ fields:
       sort: 12
       special: null
       translations: null
-      validation:
-        _and:
-          - avg_rating:
-              _lte: '5'
+      validation: null
       validation_message: null
       width: full
     schema:
@@ -1529,6 +1703,93 @@ fields:
       max_length: null
       numeric_precision: 10
       numeric_scale: 5
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: reports
+    field: user_id
+    type: uuid
+    meta:
+      collection: reports
+      conditions: null
+      display: null
+      display_options: null
+      field: user_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        enableLink: true
+      readonly: false
+      required: true
+      searchable: true
+      sort: 13
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: user_id
+      table: reports
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: users
+      foreign_key_column: id
+  - collection: reports
+    field: privacy
+    type: string
+    meta:
+      collection: reports
+      conditions: null
+      display: null
+      display_options: null
+      field: privacy
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Only me
+            value: ONLY_ME
+          - text: Public
+            value: PUBLIC
+      readonly: false
+      required: true
+      searchable: true
+      sort: 14
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: privacy
+      table: reports
+      data_type: character varying
+      default_value: ONLY_ME
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: true
       is_unique: false
       is_indexed: false
@@ -1549,14 +1810,15 @@ fields:
       field: id
       group: null
       hidden: true
-      interface: numeric
+      interface: input
       note: null
       options: null
       readonly: true
       required: false
       searchable: true
       sort: 1
-      special: null
+      special:
+        - uuid
       translations: null
       validation: null
       validation_message: null
@@ -1565,7 +1827,7 @@ fields:
       name: id
       table: users
       data_type: uuid
-      default_value: uuid_generate_v4()
+      default_value: null
       max_length: null
       numeric_precision: null
       numeric_scale: null
@@ -1573,6 +1835,174 @@ fields:
       is_unique: true
       is_indexed: false
       is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: users
+    field: user_created
+    type: uuid
+    meta:
+      collection: users
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: users
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: users
+    field: date_created
+    type: timestamp
+    meta:
+      collection: users
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: users
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: users
+    field: user_updated
+    type: uuid
+    meta:
+      collection: users
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: users
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: users
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: users
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - date-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: users
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
       is_generated: false
       generation_expression: null
       has_auto_increment: false
@@ -1595,7 +2025,7 @@ fields:
       readonly: false
       required: true
       searchable: true
-      sort: 2
+      sort: 6
       special: null
       translations: null
       validation: null
@@ -1606,10 +2036,10 @@ fields:
       table: users
       data_type: character varying
       default_value: null
-      max_length: 100
+      max_length: 255
       numeric_precision: null
       numeric_scale: null
-      is_nullable: false
+      is_nullable: true
       is_unique: false
       is_indexed: false
       is_primary_key: false
@@ -1635,7 +2065,7 @@ fields:
       readonly: false
       required: true
       searchable: true
-      sort: 3
+      sort: 7
       special: null
       translations: null
       validation: null
@@ -1649,8 +2079,8 @@ fields:
       max_length: 255
       numeric_precision: null
       numeric_scale: null
-      is_nullable: false
-      is_unique: true
+      is_nullable: true
+      is_unique: false
       is_indexed: false
       is_primary_key: false
       is_generated: false
@@ -1659,14 +2089,14 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: users
-    field: password_hash
+    field: password
     type: hash
     meta:
       collection: users
       conditions: null
       display: null
       display_options: null
-      field: password_hash
+      field: password
       group: null
       hidden: false
       interface: input-hash
@@ -1675,7 +2105,7 @@ fields:
       readonly: false
       required: true
       searchable: true
-      sort: 4
+      sort: 8
       special:
         - hash
       translations: null
@@ -1683,11 +2113,11 @@ fields:
       validation_message: null
       width: full
     schema:
-      name: password_hash
+      name: password
       table: users
-      data_type: text
+      data_type: character varying
       default_value: null
-      max_length: null
+      max_length: 255
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -1701,7 +2131,7 @@ fields:
       foreign_key_column: null
   - collection: users
     field: profile_picture
-    type: text
+    type: uuid
     meta:
       collection: users
       conditions: null
@@ -1710,14 +2140,15 @@ fields:
       field: profile_picture
       group: null
       hidden: false
-      interface: null
+      interface: file-image
       note: null
       options: null
       readonly: false
       required: false
       searchable: true
-      sort: null
-      special: null
+      sort: 9
+      special:
+        - file
       translations: null
       validation: null
       validation_message: null
@@ -1725,7 +2156,7 @@ fields:
     schema:
       name: profile_picture
       table: users
-      data_type: text
+      data_type: uuid
       default_value: null
       max_length: null
       numeric_precision: null
@@ -1737,48 +2168,8 @@ fields:
       is_generated: false
       generation_expression: null
       has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: users
-    field: created_at
-    type: dateTime
-    meta:
-      collection: users
-      conditions: null
-      display: null
-      display_options: null
-      field: created_at
-      group: null
-      hidden: false
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: created_at
-      table: users
-      data_type: timestamp without time zone
-      default_value: CURRENT_TIMESTAMP
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
+      foreign_key_table: directus_files
+      foreign_key_column: id
 systemFields:
   - collection: directus_activity
     field: timestamp
@@ -1814,6 +2205,132 @@ relations:
       constraint_name: notification_user_id_foreign
       on_update: NO ACTION
       on_delete: SET NULL
+  - collection: ratings
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: ratings
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: ratings
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: ratings_user_created_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: ratings
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: ratings
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: ratings
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: ratings_user_updated_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: ratings
+    field: user_id
+    related_collection: users
+    meta:
+      junction_field: null
+      many_collection: ratings
+      many_field: user_id
+      one_allowed_collections: null
+      one_collection: users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: ratings
+      column: user_id
+      foreign_key_table: users
+      foreign_key_column: id
+      constraint_name: ratings_user_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: ratings
+    field: report_id
+    related_collection: reports
+    meta:
+      junction_field: null
+      many_collection: ratings
+      many_field: report_id
+      one_allowed_collections: null
+      one_collection: reports
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: ratings
+      column: report_id
+      foreign_key_table: reports
+      foreign_key_column: id
+      constraint_name: ratings_report_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: reports
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: reports
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: reports
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: reports_user_updated_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: reports
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: reports
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: reports
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: reports_user_created_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
   - collection: reports
     field: photo
     related_collection: directus_files
@@ -1827,16 +2344,95 @@ relations:
       one_deselect_action: nullify
       one_field: null
       sort_field: null
+    schema:
+      table: reports
+      column: photo
+      foreign_key_table: directus_files
+      foreign_key_column: id
+      constraint_name: reports_photo_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
   - collection: reports
-    field: user
+    field: user_id
     related_collection: users
     meta:
       junction_field: null
       many_collection: reports
-      many_field: user
+      many_field: user_id
       one_allowed_collections: null
       one_collection: users
       one_collection_field: null
       one_deselect_action: nullify
       one_field: null
       sort_field: null
+    schema:
+      table: reports
+      column: user_id
+      foreign_key_table: users
+      foreign_key_column: id
+      constraint_name: reports_user_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: users
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: users
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: users
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: users_user_created_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: users
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: users
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: users
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: users_user_updated_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: users
+    field: profile_picture
+    related_collection: directus_files
+    meta:
+      junction_field: null
+      many_collection: users
+      many_field: profile_picture
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: users
+      column: profile_picture
+      foreign_key_table: directus_files
+      foreign_key_column: id
+      constraint_name: users_profile_picture_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
