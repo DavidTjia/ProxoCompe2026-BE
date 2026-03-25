@@ -1,41 +1,24 @@
 services:
-  database:
-    image: postgres:15
-    container_name: directus-db
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: directus
-      POSTGRES_PASSWORD: directus
-      POSTGRES_DB: directus
-    volumes:
-      - ./data/database:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-
   directus:
-    image: directus/directus:latest
-    container_name: directus-app
+    image: directus/directus:11.17.0
+    container_name: tilikkota-be
     restart: unless-stopped
     ports:
       - "8055:8055"
+    # network_mode: "host"
     volumes:
-      - ./data/directus:/directus/database
       - ./uploads:/directus/uploads
       - ./extensions:/directus/extensions
-    depends_on:
-      - database
+    env_file:
+      - .env
     environment:
       KEY: "my-secret-key"
       SECRET: "my-secret"
 
       DB_CLIENT: "pg"
-      DB_HOST: "database"
-      DB_PORT: "5432"
-      DB_DATABASE: "directus"
-      DB_USER: "directus"
-      DB_PASSWORD: "directus"
+      DB_CONNECTION_STRING: ${DB_URI}
 
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "admin123"
 
-      PUBLIC_URL: "http://localhost:8055"
+      PUBLIC_URL: "http://directus-example:8055"
